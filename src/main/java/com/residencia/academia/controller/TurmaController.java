@@ -26,26 +26,22 @@ public class TurmaController {
 	
 	@GetMapping
     public ResponseEntity<List<Turma>> findAll() {
-		List<Turma> turmaList = turmaService.findAll();
-        return new ResponseEntity<>(turmaList, HttpStatus.OK);
+        return new ResponseEntity<>(turmaService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Turma> findBy(@PathVariable Integer id) {
-    	Turma turma = turmaService.findById(id);
-        return new ResponseEntity<>(turma, HttpStatus.OK);
+        return new ResponseEntity<>(turmaService.findById(id), HttpStatus.OK);
     }
 	
 	@PostMapping
     public ResponseEntity<Turma> save(@RequestBody Turma turma){
-		Turma novaTurma = turmaService.save(turma);
-		return new ResponseEntity<>(novaTurma, HttpStatus.CREATED);
+		return new ResponseEntity<>(turmaService.save(turma), HttpStatus.CREATED);
     }
 
     @PutMapping
     public ResponseEntity<Turma> update(@RequestBody Turma turma) {
-    	Turma novaTurma = turmaService.update(turma);
-		return new ResponseEntity<>(novaTurma, HttpStatus.OK);
+		return new ResponseEntity<>(turmaService.update(turma), HttpStatus.OK);
     }
     
     @DeleteMapping("/{id}")
