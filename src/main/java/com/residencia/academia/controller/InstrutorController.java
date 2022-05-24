@@ -32,8 +32,12 @@ public class InstrutorController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Instrutor> findBy(@PathVariable Integer id) {
-    	Instrutor instrutor = instrutorService.findById(id);
-        return new ResponseEntity<>(instrutor, HttpStatus.OK);
+    	if (instrutorService.findById(id) == null) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+        else {
+            return new ResponseEntity<>(instrutorService.findById(id), HttpStatus.OK);
+        }        
     }
 	
 	@PostMapping

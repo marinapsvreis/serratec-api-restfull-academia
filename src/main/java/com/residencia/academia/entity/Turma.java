@@ -11,8 +11,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name = "turma")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idTurma")
 public class Turma {
 
 	@Id
@@ -21,19 +26,24 @@ public class Turma {
 	private Integer idTurma;
 
 	@Column(name = "horario")
+	@JsonFormat(pattern="HH:mm:ss")
 	private Date horarioTurma;
 
 	@Column(name = "duracao")
 	private Integer duracaoTurma;
 
 	@Column(name = "data_inicio")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date dataInicio;
 
 	@Column(name = "data_fim")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date dataFim;
 
 	@ManyToOne
 	@JoinColumn(name = "id_instrutor", referencedColumnName = "id_instrutor")
+	//@JsonIgnore
+	//@JsonManagedReference
 	private Instrutor instrutor;
 
 	public Integer getIdTurma() {

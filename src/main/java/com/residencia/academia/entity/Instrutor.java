@@ -11,10 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "instrutor")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idInstrutor")
 public class Instrutor {
 
 	@Id
@@ -29,13 +32,15 @@ public class Instrutor {
 	private String nomeInstrutor;
 
 	@Column(name = "nascimento")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date dataNascimentoInstrutor;
 
 	@Column(name = "titulacao")
 	private Integer titulacaoInstrutor;
 	
 	@OneToMany(mappedBy="instrutor")
-	@JsonIgnore
+	//@JsonIgnore
+	//@JsonBackReference
 	private List<Turma> listaTurmas; 
 
 	public Integer getIdInstrutor() {
