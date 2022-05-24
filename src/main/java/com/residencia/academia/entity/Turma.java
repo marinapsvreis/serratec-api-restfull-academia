@@ -45,6 +45,10 @@ public class Turma {
 	//@JsonIgnore
 	//@JsonManagedReference
 	private Instrutor instrutor;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_atividade", referencedColumnName = "id_atividade")
+	private Atividade atividade;
 
 	public Integer getIdTurma() {
 		return idTurma;
