@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.residencia.academia.entity.Instrutor;
+import com.residencia.academia.entity.Turma;
+import com.residencia.academia.exception.NoSuchElementFoundException;
 import com.residencia.academia.service.InstrutorService;
 
 @RestController
@@ -32,12 +34,13 @@ public class InstrutorController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Instrutor> findBy(@PathVariable Integer id) {
-    	if (instrutorService.findById(id) == null) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    	Instrutor instrutor = instrutorService.findById(id);
+    	if (instrutor == null) {
+    		throw new NoSuchElementFoundException("Não foi encontrado o Instrutor com o id " + id);
         }
         else {
             return new ResponseEntity<>(instrutorService.findById(id), HttpStatus.OK);
-        }        
+        }  
     }
 	
 	@PostMapping
@@ -48,13 +51,25 @@ public class InstrutorController {
 
     @PutMapping
     public ResponseEntity<Instrutor> update(@RequestBody Instrutor instrutor) {
-    	Instrutor novoInstrutor = instrutorService.update(instrutor);
-		return new ResponseEntity<>(novoInstrutor, HttpStatus.OK);
+    	Instrutor instrutorFound = instrutorService.findById(instrutor.getIdInstrutor());
+    	if (instrutorFound == null) {
+    		throw new NoSuchElementFoundException("Não foi encontrado o Instrutor com o id " + instrutor.getIdInstrutor());
+        }
+        else {
+        	Instrutor novoInstrutor = instrutorService.update(instrutor);
+    		return new ResponseEntity<>(novoInstrutor, HttpStatus.OK);
+        }     	
     }
     
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Integer id){
-    	instrutorService.delete(id);
-        return new ResponseEntity<>("", HttpStatus.OK);
+    	Instrutor instrutor = instrutorService.findById(id);
+    	if (instrutor == null) {
+    		throw new NoSuchElementFoundException("Não foi encontrado o Instrutor com o id " + id);
+        }
+        else {
+        	instrutorService.delete(id);
+            return new ResponseEntity<>("", HttpStatus.OK);
+        }    	
     }
 }
