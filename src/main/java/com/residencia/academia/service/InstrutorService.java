@@ -60,14 +60,13 @@ public class InstrutorService {
 			instrutorDTO.setRgInstrutor(instrutor.getRgInstrutor());
 			instrutorDTO.setTitulacaoInstrutor(instrutor.getTitulacaoInstrutor());
 			
-			List<TurmaDTO> listaTurmaDTO = new ArrayList<>();
+			List<Integer> listaIdTurmasDTO = new ArrayList<>();
 			
 			for(Turma turma : instrutor.getListaTurmas()) {
-				TurmaDTO turmaDTO = turmaService.converterTurmaParaDTO(turma);
-				listaTurmaDTO.add(turmaDTO);
+				listaIdTurmasDTO.add(turma.getIdTurma());
 			}
 			
-			instrutorDTO.setListaTurmasDTO(listaTurmaDTO);
+			instrutorDTO.setListaIdTurmasDTO(listaIdTurmasDTO);
 			
 			return instrutorDTO;
 		}

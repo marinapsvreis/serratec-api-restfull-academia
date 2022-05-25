@@ -13,7 +13,7 @@ public class InstrutorDTO {
 	private Date dataNascimentoInstrutor;
 	private Integer titulacaoInstrutor;
 
-	private List<TurmaDTO> listaTurmasDTO;
+	private List<Integer> listaIdTurmasDTO;
 
 	public Integer getIdInstrutor() {
 		return idInstrutor;
@@ -55,19 +55,12 @@ public class InstrutorDTO {
 		this.titulacaoInstrutor = titulacaoInstrutor;
 	}
 
-	public List<TurmaDTO> getListaTurmasDTO() {
-		return listaTurmasDTO;
+	public List<Integer> getListaIdTurmasDTO() {
+		return listaIdTurmasDTO;
 	}
 
-	public void setListaTurmasDTO(List<TurmaDTO> listaTurmasDTO) {
-		this.listaTurmasDTO = listaTurmasDTO;
-	}
-
-	@Override
-	public String toString() {
-		return "InstrutorDTO [idInstrutor=" + idInstrutor + ", rgInstrutor=" + rgInstrutor + ", nomeInstrutor="
-				+ nomeInstrutor + ", dataNascimentoInstrutor=" + dataNascimentoInstrutor + ", titulacaoInstrutor=" + titulacaoInstrutor
-				+ ", listaTurmasDTO=" + listaTurmasDTO + "]";
+	public void setListaIdTurmasDTO(List<Integer> listaIdTurmasDTO) {
+		this.listaIdTurmasDTO = listaIdTurmasDTO;
 	}
 
 }

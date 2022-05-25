@@ -9,6 +9,8 @@ import com.residencia.academia.dto.TurmaDTO;
 import com.residencia.academia.entity.Atividade;
 import com.residencia.academia.entity.Instrutor;
 import com.residencia.academia.entity.Turma;
+import com.residencia.academia.repository.AtividadeRepository;
+import com.residencia.academia.repository.InstrutorRepository;
 import com.residencia.academia.repository.TurmaRepository;
 
 @Service
@@ -18,10 +20,10 @@ public class TurmaService {
 	private TurmaRepository turmaRepository;
 	
 	@Autowired
-	private InstrutorService instrutorService;
+	private InstrutorRepository instrutorRepository;
 	
 	@Autowired
-	private AtividadeService atividadeService;
+	private AtividadeRepository atividadeRepository;
 	
 	public List<Turma> findAll(){
 		return turmaRepository.findAll();
@@ -72,9 +74,9 @@ public class TurmaService {
 		turma.setDuracaoTurma(turmaDTO.getDuracaoTurma());
 		turma.setDataInicio(turmaDTO.getDataInicio());
 		turma.setDataFim(turmaDTO.getDataFim());
-		Instrutor instrutor = instrutorService.findById(turmaDTO.getIdInstrutor());
+		Instrutor instrutor = instrutorRepository.findById(turmaDTO.getIdInstrutor()).get();
 		turma.setInstrutor(instrutor);
-		Atividade atividade = atividadeService.findById(turmaDTO.getIdAtividade());
+		Atividade atividade = atividadeRepository.findById(turmaDTO.getIdAtividade()).get();
 		turma.setAtividade(atividade);
 		
 		return turma;
