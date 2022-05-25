@@ -19,6 +19,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		return buildErrorResponse(itemNotFoundException, itemNotFoundException.getMessage(), HttpStatus.NOT_FOUND,
 				request);
 	}
+	
+	@ExceptionHandler(RGException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<Object> handleRGException(RGException rgException,
+            WebRequest request) {
+        return buildErrorResponse(rgException, rgException.getMessage(), HttpStatus.BAD_REQUEST,
+                request);
+    }
 
 	@ExceptionHandler(Exception.class)
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
