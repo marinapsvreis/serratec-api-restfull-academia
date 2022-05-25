@@ -2,8 +2,6 @@ package com.residencia.academia.dto;
 
 import java.util.List;
 
-import com.residencia.academia.entity.Turma;
-
 public class AtividadeDTO {
 
 	private Integer idAtividade;

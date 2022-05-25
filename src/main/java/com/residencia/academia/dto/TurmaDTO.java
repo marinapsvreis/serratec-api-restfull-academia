@@ -17,8 +17,8 @@ public class TurmaDTO {
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date dataFim;
 
-	private Instrutor instrutor;
-	private Atividade atividade;
+	private Integer idInstrutor;
+	private Integer idAtividade;
 
 	public Integer getIdTurma() {
 		return idTurma;
@@ -60,28 +60,27 @@ public class TurmaDTO {
 		this.dataFim = dataFim;
 	}
 
-	public Instrutor getInstrutor() {
-		return instrutor;
+	public Integer getIdInstrutor() {
+		return idInstrutor;
 	}
 
-	public void setInstrutor(Instrutor instrutor) {
-		this.instrutor = instrutor;
+	public void setIdInstrutor(Integer idInstrutor) {
+		this.idInstrutor = idInstrutor;
 	}
 
-	public Atividade getAtividade() {
-		return atividade;
+	public Integer getIdAtividade() {
+		return idAtividade;
 	}
 
-	public void setAtividade(Atividade atividade) {
-		this.atividade = atividade;
+	public void setIdAtividade(Integer idAtividade) {
+		this.idAtividade = idAtividade;
 	}
 
 	@Override
 	public String toString() {
 		return "TurmaDTO [idTurma=" + idTurma + ", horarioTurma=" + horarioTurma + ", duracaoTurma=" + duracaoTurma
-				+ ", dataInicio=" + dataInicio + ", dataFim=" + dataFim + "]";
+				+ ", dataInicio=" + dataInicio + ", dataFim=" + dataFim + ", idInstrutor=" + idInstrutor
+				+ ", idAtividade=" + idAtividade + "]";
 	}
-
-
 
 }

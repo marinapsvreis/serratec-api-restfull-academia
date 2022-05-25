@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.residencia.academia.dto.TurmaDTO;
+import com.residencia.academia.entity.Atividade;
+import com.residencia.academia.entity.Instrutor;
 import com.residencia.academia.entity.Turma;
 import com.residencia.academia.repository.TurmaRepository;
 
@@ -14,6 +16,12 @@ public class TurmaService {
 	
 	@Autowired
 	private TurmaRepository turmaRepository;
+	
+	@Autowired
+	private InstrutorService instrutorService;
+	
+	@Autowired
+	private AtividadeService atividadeService;
 	
 	public List<Turma> findAll(){
 		return turmaRepository.findAll();
@@ -51,8 +59,8 @@ public class TurmaService {
 		turmaDTO.setDuracaoTurma(turma.getDuracaoTurma());
 		turmaDTO.setDataInicio(turma.getDataInicio());
 		turmaDTO.setDataFim(turma.getDataFim());
-		turmaDTO.setInstrutor(turma.getInstrutor());
-		turmaDTO.setAtividade(turma.getAtividade());		
+		turmaDTO.setIdInstrutor(turma.getInstrutor().getIdInstrutor());
+		turmaDTO.setIdAtividade(turma.getAtividade().getIdAtividade());
 		
 		return turmaDTO;
 	}
@@ -64,8 +72,10 @@ public class TurmaService {
 		turma.setDuracaoTurma(turmaDTO.getDuracaoTurma());
 		turma.setDataInicio(turmaDTO.getDataInicio());
 		turma.setDataFim(turmaDTO.getDataFim());
-		turma.setInstrutor(turmaDTO.getInstrutor());
-		turma.setAtividade(turmaDTO.getAtividade());		
+		Instrutor instrutor = instrutorService.findById(turmaDTO.getIdInstrutor());
+		turma.setInstrutor(instrutor);
+		Atividade atividade = atividadeService.findById(turmaDTO.getIdAtividade());
+		turma.setAtividade(atividade);
 		
 		return turma;
 	}
