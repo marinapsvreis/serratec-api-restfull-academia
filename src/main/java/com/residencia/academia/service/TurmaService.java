@@ -62,7 +62,9 @@ public class TurmaService {
 		turmaDTO.setDataInicio(turma.getDataInicio());
 		turmaDTO.setDataFim(turma.getDataFim());
 		turmaDTO.setIdInstrutor(turma.getInstrutor().getIdInstrutor());
+		turmaDTO.setNomeInstrutor(turma.getInstrutor().getNomeInstrutor());
 		turmaDTO.setIdAtividade(turma.getAtividade().getIdAtividade());
+		turmaDTO.setNomeAtividade(turma.getAtividade().getNomeAtividade());
 		
 		return turmaDTO;
 	}

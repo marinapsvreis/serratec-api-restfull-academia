@@ -18,7 +18,9 @@ public class TurmaDTO {
 	private Date dataFim;
 
 	private Integer idInstrutor;
+	private String nomeInstrutor;
 	private Integer idAtividade;
+	private String nomeAtividade;
 
 	public Integer getIdTurma() {
 		return idTurma;
@@ -74,6 +76,22 @@ public class TurmaDTO {
 
 	public void setIdAtividade(Integer idAtividade) {
 		this.idAtividade = idAtividade;
+	}
+
+	public String getNomeInstrutor() {
+		return nomeInstrutor;
+	}
+
+	public void setNomeInstrutor(String nomeInstrutor) {
+		this.nomeInstrutor = nomeInstrutor;
+	}
+
+	public String getNomeAtividade() {
+		return nomeAtividade;
+	}
+
+	public void setNomeAtividade(String nomeAtividade) {
+		this.nomeAtividade = nomeAtividade;
 	}
 
 	@Override
