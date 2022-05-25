@@ -64,7 +64,9 @@ public class AtividadeService {
 			for(Turma turma : atividade.getListaTurmas()) {
 				TurmaDTO turmaDTO = turmaService.converterTurmaParaDTO(turma);
 				listaTurmaDTO.add(turmaDTO);
-			}			
+			}
+			
+			atividadeDTO.setListaTurmasDTO(listaTurmaDTO);
 			
 			return atividadeDTO;
 		}
